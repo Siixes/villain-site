@@ -4,9 +4,11 @@ source "https://rubygems.org"
 
 gemspec
 
-group :test do
-  gem "html-proofer", "~> 3.18"
-end
+# uncomment group below for original
+#group :test do
+#  gem "html-proofer", "~> 3.18"
+#end
+gem "html-proofer"
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.
