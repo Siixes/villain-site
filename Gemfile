@@ -27,4 +27,4 @@ if RUBY_PLATFORM =~ /linux-musl/
   gem "jekyll-sass-converter", "~> 2.0"
 end
 
-gem "html-proofer",  "~> 3.18)"
+gem "html-proofer",  "~> 3.18"
