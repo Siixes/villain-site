@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 gemspec
 
-# comment for push
+# comment for push 2
 group :test do
   gem "html-proofer", "~> 3.18"
 end
