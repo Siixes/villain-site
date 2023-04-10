@@ -4,7 +4,6 @@ source "https://rubygems.org"
 
 gemspec
 
-# uncomment group below for original
 group :test do
   gem "html-proofer", "~> 3.18"
 end
