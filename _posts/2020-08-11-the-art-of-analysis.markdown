@@ -12,7 +12,7 @@ There are a plethora of specialities within InfoSec, many of which have a number
 
 ## Caveats
 
-I am not even close to the first person (nor the last) to ponder and write on the essence of analysis. There have been numerous before me to explore and document their findings on this process. One of the most notable that comes to mind is [The Psychology of Intelligence Analysis](https://www.cia.gov/library/center-for-the-study-of-intelligence/csi-publications/books-and-monographs/psychology-of-intelligence-analysis/PsychofIntelNew.pdf). While that explores analysis through the lens of government intelligence analysts whose drive it is to inform policy makers, it covers many cognitive biases that impacts how we do analysis in other fields.
+I am not even close to the first person (nor the last) to ponder and write on the essence of analysis. There have been numerous before me to explore and document their findings on this process. One of the most notable that comes to mind is [The Psychology of Intelligence Analysis](https://www.cia.gov/library/center-for-the-study-of-intelligence/csi-publications/books-and-monographs/psychology-of-intelligence-analysis/PsychofIntelNew.pdf). While that explores analysis through the lens of government intelligence analysts that seek to leverage their analytic skills to inform policy makers, it covers many cognitive biases that impacts how we do analysis in other fields.
 
 This post is not a comprehensive view of analysis and how it can apply to our functions in the InfoSec world, but my goal is to provide an initial introduction to the subject. How can people beginning in the field better identify a path to grow their skills? How can someone established in the field better evaluate the accuracy of their own work? These are a couple of the topics this introduction seeks to touch on.
 
@@ -42,7 +42,7 @@ Our ability to 'analyze' data can be directly correlated to our level of underst
 >    4. If I have an expert level understanding of the language, I may be able to not only give you a proper English translation, but also provide insights such as, even though they said "A", that is actually a Hindi saying that actually means "B".
 >
 
-Given this example, it becomes more obvious how our ability to infer data grows as our expertise/understanding of the data in question grows.
+Given this example, it becomes more obvious how our ability to infer data grows as our expertise/understanding of the data in question grows. It's not abnormal for people entering a career in Infosec to be told something like, "Go learn networking/operating systems". Even starting out as an "analyst", this is imperative advice because it enables people to better understand what they are trying to analyze.
 
 ## Synthesizing Multiple Data Points
 
@@ -84,7 +84,7 @@ There are multiple other data points you can infer from this:
 >    5. (assuredly more here)
 >
 
-Looking at that, you can take a single data point and identify a number of other data points that would be related that would have had to happen to get to the data point that you initially observed. You can then start to build a trail of other data points to begin investigating to create a more complete picture of what happened.
+Looking at that, you can take a single data point and identify related data points that would had to happen to get to the data point that you initially observed. You can then start to build a trail of other data points to begin investigating to create a more complete picture of what happened.
 
 Below is another example of this from a slightly different perspective. Caveat: I MADE UP THE BELOW DATA FOR THE SAKE OF ILLUSTRATION, IT IS NOT REAL. Let's say all you have to evaluate is a single line of netflow data:
 
