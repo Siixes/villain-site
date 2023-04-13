@@ -44,13 +44,13 @@ Quite a while ago a handful of friends from different companies were chatting ab
 
  I slept even easier knowing that if shit were to pop off, there was a great chance we'd catch it! Fast forward some time, and I was going to test out some attacker tool/technique in our environment. *"This will create an alert, but I want to see what an attacker could do with this on our network anyway"*, I thought. Well, I ran the tool and **...drumroll...** no detection fired.
 
- Going back and looking through the (rather complex) logic for what *should* have fired, it turns out the logic got fucked up, and there was almost no circumstance in which it would **ever** fire.
+ Going back and looking through the (rather complex) logic of the detection that *should* have fired, it turns out the logic got fucked up, and there was almost no circumstance in which it would **ever** create an alert.
 
  Yeah, my world-view was shattered. It raised the question...all that time that some detections weren't firing, was that because there was no malicious activity happening? or because the detections weren't working the way we thought they were?
 
 ### Knee-jerk reactions aren't known for their subtlety
 
-So, what do you do now? Well, luckily, the methodology to fix something like this is already a solved problem in the software world (*I'm looking at YOU, [unit testing](https://en.wikipedia.org/wiki/Unit_testing)*). The concept of unit testing is pretty simple; there are tests created to ensure that bits of code work as anticipated. Sadly, I haven't seen or heard this applied much in the context of detection and response, even though I think we absolutely should.
+So, what do you do now? Luckily, the methodology to fix something like this is already a solved problem in the software world (*I'm looking at YOU, [unit testing](https://en.wikipedia.org/wiki/Unit_testing)*). The concept of unit testing is pretty simple; there are tests created to ensure that bits of code work as anticipated. Sadly, I haven't seen or heard this applied much in the context of detection and response, even though I think we absolutely should.
 
 What would this look like? Well, here is how I've seen it implemented before:
 
@@ -63,7 +63,7 @@ What would this look like? Well, here is how I've seen it implemented before:
 >    * You reset the machine and start over
 >
 
-To do this in a way that is continuous and scales it will require you to have a corpus of "attacks" you can run on your test boxes. There are products out there that offer suites of threat emulation that could be built into a pipeline like this. But even if you can't get your hands on something like that, you could still run most of these manually.
+To do this in a way that is continuous and scales it will require you to have a corpus of "attacks" you can run in a controlled environment in your network. There are products out there that offer suites of threat emulation that could be built into a pipeline like this. But even if you can't get your hands on something like that, you could still run most of these manually.
 
 The beauty of doing these things continuously and building a pipeline for this is you could get immediate feedback and notice changes over time. For example, did IT make a change to group policy last week that took an attack that didn't used to work in your environment, and now it will work?  Having a system like this will be able to give you that feedback.
 
@@ -80,7 +80,7 @@ What are your real goals from doing something like this? There are a couple of t
 
 ### Outtro
 
-Trust me, the idea of a big CI/CD system for unit testing your detections may sound daunting and unrealistic for most people. But consider something like that a north star; most people should be able to coordinate doing some manual testing of attacks in their network to ensure you're able to see and detect some of the low hanging fruit you may expect to see from attackers.
+Trust me, the idea of a big CI/CD system for unit testing your detections may sound daunting and unrealistic for most people. But consider it something like that a north star; most people should be able to coordinate doing some manual testing of attacks in their network to ensure you're able to see and detect some of the low hanging fruit you may expect to see from attackers.
 
 Don't become complacent in the concept of *"I don't have to worry, we have a detection for that..."* if you haven't actively seen that detection fire on what you expect. Too many people (myself included), have made that mistake.
 
