@@ -1,0 +1,70 @@
+---
+title: EDR as NAC musings
+author: kyle
+date: 2024-08-20 18:32:00 -0500
+categories: [Blogging, Security Tools]
+tags: [tools, cybersecurity]
+---
+
+## Why this post
+
+Below is a technical post for something that’s been on my mind a while. It may not be the greatest idea since sliced bread but I find it intriguing enough to write about. I’m also gonna make some hand-wavy statements for the sake of technical brevity.  Please feel free to call me out if I am egregiously wrong, but if there is criticism that boils down to, (pushes up glasses higher on the nose) “Well actually it’s more complicated/complex than that!” Just know that I see you but I’m consciously glossing over stuff to prevent this from becoming book 3 of the Encyclopedia Brittainica. The basic premise is that I think the EDR marketplace could be filling a gap in security capabilities for many of their customers, most specifically in the area of NAC.
+
+
+## Let's agree on some words
+
+Before we go any further, let’s clarify some terms. For this post the two main subjects are:
+
+**EDR** - Endpoint Detection and Response. This is the security agent that runs on endpoints to monitor for and prevent bad activity on the hosts. These agents also usually have an ability to control the firewall on the hosts. Some of the big contenders in this space are CrowdStrike, Microsoft Defender for Endpoints (MDE), SentinalOne, and others.
+**NAC** - Network Access Control. One of the big functions of NAC tooling is to try to prevent unauthorized devices from connecting to your internal network. This can happen in various ways, but on a super high level it can boil down to: if someone walks into your office and plugs in their malware-ridden computer into an open Ethernet jack in the wall, ideally the network will say: “thou shall not pass”.  There are usually ways to circumvent some of these controls, but it requires a higher level of skills and sophistication of attackers, and that’s kinda the point.
+**Managed/unmanaged** - I’m going to use the terms “managed device” and “unmanaged device”.  For the purposes of this blog, I’m going to use the hand-wavy definition of, “if it’s running your security agent, it’s managed. If it’s not running your security agent, it’s unmanaged/untrusted”.
+
+## This Business Plan is not a truck, it is a series of tubes!
+
+For a plethora of reasons, NAC solutions aren’t always prioritized or implemented at companies, and in my informal analysis (read: talking to friends at different places), if you only have one of the 2 technologies above, it’s more likely that you have an EDR solution than NAC.
+
+This is where I think there is a fascinating business opportunity for EDR solutions to partially fill the space where a NAC solution may not be present.
+
+## Neighbor Discovery
+
+In order to explore this, there is a feature present in most EDR solutions that is necessary to explain, Neighbor Discovery (or something like that, maybe different EDR’s call it something different). Here's roughly how it works:
+
+For the purposes of this explanation, I’m just going to make up the name of an EDR platform called “*LoremIpsum*”, but this concept can be abstracted to any EDR platform. One feature in many EDR solutions is that the agent can see what machines (laptops/desktops/etc) are on the local network to them. Looking at things like ARP tables and other data points, machines can see what is directly around them on the network.
+
+So let’s pretend there’s a network with 4 different machines on our network, named **A**, **B**, **C**, and **D**. Let’s say the *LoremIpsum* agent is running on machine **A**. As part of A checking in to the *LoremIpsum* platform, it may say, “hey, I see machines **B**, **C**, and **D**”. 
+
+
+
+Let’s say the *LoremIpsum* agent is also running on machine **B**. **B** will report up to the platform “I see machines **A**, **C**, and **D**”. The same thing happens for machine **C**.  For this scenario, we’ll say there is no EDR agent running on machine **D** (so it can be considered "unmanaged"). 
+
+
+
+So as a security analyst, you can look in the platform and it’ll show you, “hey, there’s a machine called **D** that seems to be unmanaged.”  This is a great way to get a snapshot of if there are machines in your network that need to get managed and get the EDR agent on them, or to be a catalyst to begin an investigation and answer *“wtf is this thing on my network?!”*. 
+
+
+
+## Bringing it all together
+
+Here’s how I think it all could be pulled together. The EDR platform is able to aggregate all of the above telemetry to paint a picture that, for each machine, which other machines around it are managed/are running the security agent. 
+
+Knowing that the EDR platform has the telemetry to indicate which hosts “are managed” as well as the EDR agent itself has the ability to also control the firewall for each host, the main question I have is: **“why can’t the platform use the telemetry of unmanaged hosts in a network to push down firewall rules to each of the managed hosts to block risky traffic originating from unmanaged hosts towards managed hosts?”** 
+
+It doesn’t have to block absolutely all traffic from unmanaged hosts on your network, but I can’t think of a single reason why an unmanaged machine should be connecting to sensitive/administrative protocols on my managed internal infrastructure on ports like 135, 445, 3389, or 5986. How awesome would it be to say, *“my EDR not only can monitor for badness on my hosts, but it will actually block sensitive network connection attempts from unknown machines on my network.”*  
+
+Imagine being a red teamer who social engineers your way into a target office space, nestle into a desk, plug into an open Ethernet port, and start your bad activities only to get alerted on/chased down the moment you try to scan and connect to anything around you…all happening without a NAC solution (that could potentially be bypassed).  As much as I love my offensive brethren, that’s the kind of security level-up that I think would be awesome to see in the world.
+
+## Outtro 
+
+One outtro point is, I realize it may not be “easy” to implement this across a whole EDR platform, but I feel like the technology and telemetry is all there to make it happen. I also believe there could be some notable increases in security posture/capability by doing so.
+
+Another outtro point is, I am not advocating for total network blocking between unmanaged and managed machines. There are definitely use cases where total network blocking may break things, but if you limit it to blocking certain sensitive/remote management ports, I’m not seeing the downsides. I haven’t heard a single good argument for allowing an unmanaged machine to connect to remote management ports on your managed infrastructure in an enterprise setting. 
+
+## Call to Action
+
+There are 3 call to actions I am issuing you if you read through this:
+
+>
+>    1. If you think something like this would be useful and you use an EDR product, request they build this out. No product will be incentivized to do this if it seems like no one cares about it.
+>    2. If I’m majorly wrong about this, please tell me. I accept LinkedIn shaming and scathing hand-written notes sent via carrier pigeon.
+>    3. Be good to the people around you.
+>  
