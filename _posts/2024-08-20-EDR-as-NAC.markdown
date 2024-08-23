@@ -18,10 +18,9 @@ EDR (endpoint detection and response) technology.
 
 There are a couple reasons. 
 
->
->	1. If you use/manage/rely on EDR and think this would be an interesting idea, advocate with the company that makes your EDR to consider this as a feature.
->	2. Leveraging technology to do more than what comes out of the box is fascinating to me. I consider these types of things puzzles to be solved, and the act of finding more value than what is obviously in plain sight is fun. If that is also fun for you, then use this as a catalyst to explore other types of use cases that could be addressed with the tools that are already in our tool belt.
->
+  1. If you use/manage/rely on EDR and think this would be an interesting idea, advocate with the company that makes your EDR to consider this as a feature.
+  2. Leveraging technology to do more than what comes out of the box is fascinating to me. I consider these types of things puzzles to be solved, and the act of finding more value than what is obviously in plain sight is fun. If that is also fun for you, then use this as a catalyst to explore other types of use cases that could be addressed with the tools that are already in our tool belt.
+
 
 ## Caveats and money-back guaruntees
 
